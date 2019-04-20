@@ -37,6 +37,21 @@ class App extends Component {
     key: 'Color_Card',
   }];
 
+  startingLineupColumns = [{
+    title: 'GameID',
+    dataIndex: 'GameID',
+    key: 'GameID',
+    render: text => <a href="javascript:;">{text}</a>,
+  },{
+    title: 'Kit Number',
+    dataIndex: 'PlayerID',
+    key: 'PlayerID',
+  },{
+    title: 'Player Name',
+    dataIndex: 'FIFA_Popular_Name',
+    key: 'FIFA_Popular_Name',
+  }];
+
 
   constructor(props) {
     super(props);
@@ -54,7 +69,7 @@ class App extends Component {
     axios.get('http://localhost:3000/api/startingLineup?team=' + country)
       .then((response) => {
         this.setState({
-          startingLineup: response
+          startingLineup: response.data.values
         })
       })
       .catch((error) => {
@@ -78,14 +93,16 @@ class App extends Component {
   render() {
     return (
       <Layout className="layout">
-        <Header style={{ backgroundColor: '#1d39c4', textAlign: 'center' }}>
+        <Header style={{ backgroundColor: '#597ef7', textAlign: 'center' }}>
           <h1 style={{ color: '#fff' }}> FIFA World Cup Data Visualizer</h1>
         </Header>
-        <Content style={{ padding: '20px 50px' }}>
-          <Tabs defaultActiveKey="1" onChange={callback}>
-            <TabPane tab="Starting Lineup" key="1">
+        <Content style={{ padding: '20px 200px' }}>
+          <Tabs defaultActiveKey="1" onChange={callback} style = {{color:'#597ef7'}}>
+            <TabPane tab="Starting Lineup" key="1" >
               <div className="example-input">
                 <Input size="large" placeholder="Team Name" onChange={(event) => this.setState({ startingLineupTeam: event.target.value })} />
+                <Button style = {{backgroundColor : '#597ef7', color: 'white'}} icon="search" size="large" onClick= {(event) => this.fetchStartingLineupData(this.state.startingLineupTeam)}>Starting Lineup Query</Button>
+                <Table columns={this.startingLineupColumns} dataSource={this.state.startingLineup} />
               </div>
             </TabPane>
             <TabPane tab="Card History" key="2">
@@ -95,13 +112,13 @@ class App extends Component {
                   <Option value="Yellow">Yellow</Option>
                   <Option value="Red">Red</Option>
                 </Select>
-                <Button style = {{backgroundColor : '#1d39c4', color: 'white'}} icon="search" size="large" onClick= {(event) => this.fetchCardHistoryData(this.state.cardHistoryTeam, this.state.cardHistoryColor)}>Card History Query</Button>
+                <Button style = {{backgroundColor : '#597ef7', color: 'white'}} icon="search" size="large" onClick= {(event) => this.fetchCardHistoryData(this.state.cardHistoryTeam, this.state.cardHistoryColor)}>Card History Query</Button>
                 <Table columns={this.cardHistoryColumns} dataSource={this.state.cardHistory} />
               </div>
             </TabPane>
           </Tabs>
         </Content>
-        <Footer style={{ backgroundColor: '#1d39c4', color: 'white', textAlign: 'center' }}>
+        <Footer style={{ backgroundColor: '#597ef7', color: 'white', textAlign: 'center', marginTop:'130px'}}>
           Adarsh Yogesh Pai and James Brady
     </Footer>
       </Layout>
