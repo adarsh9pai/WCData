@@ -18,24 +18,28 @@ class App extends Component {
     dataIndex: 'GameID',
     key: 'GameID',
     render: text => <a href="javascript:;">{text}</a>,
-  }, {
-    title: 'Team 1 Score',
-    dataIndex: 'Team1_Score',
-    key: 'Team1_Score',
-  }, {
-    title: 'Team 2 Score',
-    dataIndex: 'Team2_Score',
-    key: 'Team2_Score',
-  },
+  }, 
   {
     title: 'Player Name',
     dataIndex: 'FIFA_Popular_Name',
     key: 'FIFA_Popular_Name',
-  },{
+  },
+  /*{
+    title: 'Team 1 Score',
+    dataIndex: 'Team1_Score',
+    key: 'Team1_Score',
+  },
+   {
+    title: 'Team 2 Score',
+    dataIndex: 'Team2_Score',
+    key: 'Team2_Score',
+  }, 
+  {
     title: 'Card Color',
     dataIndex: 'Color_Card',
     key: 'Color_Card',
-  }];
+  }*/
+  ];
 
   startingLineupColumns = [{
     title: 'GameID',
