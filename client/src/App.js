@@ -70,7 +70,7 @@ class App extends Component {
     }
   }
   fetchStartingLineupData = (country) => {
-    axios.get('http://localhost:3000/api/startingLineup?team=' + country)
+    axios.get('http://localhost:8000/api/startingLineup?team=' + country)
       .then((response) => {
         this.setState({
           startingLineup: response.data.values
@@ -82,7 +82,7 @@ class App extends Component {
   }
   fetchCardHistoryData = (country, card) => {
     console.log(country,card);
-    axios.get('http://localhost:3000/api/cardHistory?team=' + this.state.cardHistoryTeam + '&color=' + card)
+    axios.get('http://localhost:8000/api/cardHistory?team=' + this.state.cardHistoryTeam + '&color=' + card)
       .then((response) => {
         console.log(response.data.values);
         this.setState({
